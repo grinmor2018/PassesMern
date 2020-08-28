@@ -13,13 +13,13 @@ class App extends Component {
       passes: [],
       _id:''
     };
-    this.addTask = this.addTask.bind(this);
+    this.addPass = this.addPass.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  addTask(e) {
+  addPass(e) {
     if(this.state._id) {
-        fetch(`/api/tasks/${this.state._id}`, {
+        fetch(`/api/passes/${this.state._id}`, {
             method: "PUT",
             body: JSON.stringify(this.state),
             headers: {
@@ -40,10 +40,10 @@ class App extends Component {
                 observations: "",
                 _id:""
               });
-              this.fetchTasks();
+              this.fetchPasses();
             });
     } else {
-        fetch("/api/tasks", {
+        fetch("/api/passes", {
             method: "POST",
             body: JSON.stringify(this.state),
             headers: {
@@ -63,7 +63,7 @@ class App extends Component {
                 clave: "",
                 observations: "",
               });
-              this.fetchTasks();
+              this.fetchPasses();
             })
             .catch((err) => console.log(err));
     }
@@ -71,11 +71,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.fetchTasks();
+    this.fetchPasses();
   }
 
-  fetchTasks() {
-    fetch("/api/tasks")
+  fetchPasses() {
+    fetch("/api/passes")
       .then((res) => res.json())
       .then((data) => {
         this.setState({ passes: data });
@@ -85,7 +85,7 @@ class App extends Component {
 
   deletePass(id) {
     if (confirm("Are you sure you want to delete this pass?")) {
-      fetch(`/api/tasks/${id}`, {
+      fetch(`/api/passes/${id}`, {
         method: "DELETE",
         headers: {
           Accept: "application/json",
@@ -96,13 +96,13 @@ class App extends Component {
         .then((data) => {
           console.log(data);
           M.toast({ html: "Pass deleted" });
-          this.fetchTasks();
+          this.fetchPasses();
         });
     }
   }
 
   editPass(id) {
-    fetch(`/api/tasks/${id}`)
+    fetch(`/api/passes/${id}`)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -131,7 +131,7 @@ class App extends Component {
         <nav className="light-green darken-4">
           <div className="container">
             <a className="brand-logo" href="/">
-              Passes MERN
+              My passes
             </a>
           </div>
         </nav>
@@ -141,7 +141,7 @@ class App extends Component {
             <div className="col s3">
               <div className="card">
                 <div className="card-content">
-                  <form onSubmit={this.addTask}>
+                  <form onSubmit={this.addPass}>
                     <div className="row">
                       <div className="input-field col s12">
                         <input

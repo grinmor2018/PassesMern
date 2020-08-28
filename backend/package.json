@@ -13,9 +13,10 @@
   "license": "ISC",
   "dependencies": {
     "babel-loader": "^7.1.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.10.0",
-    "morgan": "^1.10.0"
+    "mongoose": "^5.10.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
