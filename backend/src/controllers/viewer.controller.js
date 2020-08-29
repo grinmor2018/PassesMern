@@ -9,7 +9,6 @@ viewCtrl.getPasses = async (req, res) => {
 
 viewCtrl.getPass = async (req, res) => {
     const pass = await Pass.findById(req.params.id);
-    console.log(pass);
     res.json(pass);   
 };
 

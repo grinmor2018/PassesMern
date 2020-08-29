@@ -31,7 +31,7 @@ functionsCtrl.createPass = async (req, res) => {
       clave,
       observations,
     };
-    await Pass.findByIdAndUpdate(req.params.id, newPass);
+    await Pass.findOneAndUpdate(req.params.id, newPass);
     res.json({ status: "Pass updated" });
   };
 
